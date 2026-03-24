@@ -2,32 +2,65 @@
 import Link from "next/link"
 import CaptchaForm from "../../../components/Captcha"
 import { useState } from "react"
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [name, setname] = useState("");
   const [password, setpassword] = useState("");
-  const onSubmit = async() => {
-    const response = await fetch("http://127.0.0.1:8000/api/login/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: email,
-      password: password,
-    }),
-  });
+  const router = useRouter()
+  const onSubmit = async () => {
+    if (!name || !password) {
+      toast('Enter Both the Fields!', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+        type: "error"
+      });
+    } else {
+      
+      const response = await fetch("http://127.0.0.1:8000/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: name,
+          password: password,
+        }),
+      });
 
-  const data = await response.json();
-  console.log(data);
+      const data = await response.json();
+      console.log(data);
+      if (data) {
+        localStorage.setItem("user", JSON.stringify(data))
+        router.push("/")
+      }
+    }
   }
   return (
-    <div className="flex min-h-screen justify-between min-w-screen bg-[url('/wallpaper.png')] bg-cover bg-center">
-      <div className="sm:p-0 px-4 py-5 ">
-
-      </div>
-      <div className="w-1/2 md:w-full items-center flex flex-col ">
-        <div className="bg-[#0F223A]/80 backdrop-blur-md border border-cyan-400/30 
+    <div className="flex min-h-screen px-4 min-w-screen bg-[url('/wallpaper.png')] bg-cover bg-center">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      <div className=" md:w-full items-center flex flex-col ">
+        <div className="bg-[#0F223A]/80 backdrop-blur-md max-w-4xl mx-auto border border-cyan-400/30 
 rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
           <div className="mx-auto space-x-3 w-1/2 flex px-5 rounded-full">
             <img src="/logo.jpeg" className="h-30 w-full my-auto rounded-full" alt="" />
@@ -40,7 +73,6 @@ rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
           <CaptchaForm />
           <button onClick={onSubmit} className="btn-prm">Login</button>
           <Link href={`/auth/register`}>
-
             <button className="btn-sec">Sign Up</button>
           </Link>
         </div>

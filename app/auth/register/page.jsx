@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useState } from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const Page = () => {
   const [name, setname] = useState("");
@@ -24,12 +25,23 @@ const Page = () => {
   alert(data.message);
   }
   return (
-     <div className="flex min-h-screen min-w-screen bg-[url('/wallpaper.png')] bg-cover bg-center">
-      <div className="md:px-5 lg:px-4 lg:py-5 ">
-
-      </div>
+         <div className="flex min-h-screen px-4 min-w-screen bg-[url('/wallpaper.png')] bg-cover bg-center">
+<ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+      
       <div className="lg:w-2/5 mx-auto p-5 md:w-full items-center flex flex-col ">
-        <div className="bg-[#0F223A]/80 backdrop-blur-md border border-cyan-400/30 
+        <div className="bg-[#0F223A]/80 backdrop-blur-md max-w-4xl mx-auto border border-cyan-400/30 
 rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
           <div className="mx-auto space-x-3 w-1/2 flex px-5 rounded-full">
             <img src="/logo.jpeg" className="h-30 w-full my-auto rounded-full" alt="" />
