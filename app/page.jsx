@@ -3,13 +3,17 @@ import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
 import "./marquee.css"
 import Link from "next/link";
+import { useEffect, useState } from "react";
 export default function Home() {
-  const user = JSON.parse(localStorage.getItem("user"))
   const router = useRouter()
+  const [user, setuser] = useState(null)
+  useEffect(() => {
+    if (!(JSON.parse(localStorage.getItem("user")))) {
+      router.push("/auth/login")
+    }
+    setuser(JSON.parse(localStorage.getItem("user")))
+  }, [])
 
-  if (!user) {
-    router.push("/auth/login")
-  }
 
   return (
     <div className="bg-[url('/wallpaper.png')] min-h-screen max-h-fit absolute inset-0 bg-blend-overlay bg-black/60 bg-cover bg-center">
@@ -54,16 +58,16 @@ export default function Home() {
         </div>
         <div className="flex flex-col space-y-3 h-full py-8 rounded-2xl ">
           <img src="/avatar.png" className="h-80 w-80" alt="" />
-          <span className="text-xl text-center font-bold ">Amogh Agrahari</span>
+          <span className="text-xl text-center font-bold ">{user?.name}</span>
           <Link href={`/auth/profile`}>
             <button className="btn-prm">Edit Profile</button>
           </Link>
         </div>
-        <span className="text-2xl font-bold my-3">
-
-          Things You Can Do
-        </span>
         <div className="flex flex-col lg:hidden space-y-4 rounded-2xl ">
+          <span className="text-2xl text-center font-bold my-3 lg:hidden block">
+
+            Things You Can Do
+          </span>
           <div className="flex items-center">
             <div>
               <img src="/savedimg.png" className="h-20 w-30 mr-3" alt="" />
