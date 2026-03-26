@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
+import ImgUpload from '../../../components/ImgUpload';
 
 const Page = () => {
     const [user, setuser] = useState()
@@ -12,7 +13,7 @@ const Page = () => {
         setuser(JSON.parse(localStorage.getItem("user")))
 
     }, [])
-    console.log(user);
+    // console.log(user);
     const ll = moment(user?.last_login).utc().format("Do MMMM YYYY");
     const dj = moment(user?.
         date_joined
@@ -33,6 +34,7 @@ rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
                         <span>Last Login: {ll}</span>
                         <span>Date Joined: {dj}</span>
                     </div>
+                    <ImgUpload user={user} />
                 </div>
             </div>
 

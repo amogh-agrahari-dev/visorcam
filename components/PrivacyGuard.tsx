@@ -144,6 +144,14 @@ import Webcam from 'react-webcam';
 
 const PrivacyGuard = () => {
     const webcamRef = useRef(null);
+    //  const [user, setuser] = useState()
+    //     // const router = useRouter()
+
+    //     useEffect(() => {
+    //         setuser(JSON.parse(localStorage.getItem("user")))
+
+    //     }, [])
+    //     console.log(user);
     const [status, setStatus] = useState("Initializing...");
 
     const captureAndCheck = async () => {
@@ -163,6 +171,10 @@ const PrivacyGuard = () => {
                     setStatus(`Authorized: ${data.confidence}%`);
                 } else if (data.status === "intruder") {
                     setStatus("🚨 INTRUDER ALERT 🚨");
+                    new Notification(` You Have an Alert`, {
+                        body: "There is someone in front of your camera who is not recognized. Please check immediately!",
+                        icon: "/logo.jpeg", // Must be in your /public folder
+                    });
                 } else {
                     setStatus("No Face Detected");
                 }

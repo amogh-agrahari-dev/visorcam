@@ -14,7 +14,7 @@ const Navbar = () => {
         <div className='flex justify-around items-center lg:px-5 md:px-3 py-6 bg-[#0F223A]/20 sticky backdrop-blur-xs'>
             <Link href={`/`}>
                 <div className='text-3xl cursor-pointer font-bold'>
-                    VisorCam
+                    ViSORCAM
                 </div>
             </Link>
             <div className='hidden lg:block'>
