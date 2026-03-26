@@ -24,7 +24,7 @@ const Page = () => {
         type: "error"
       });
     } else {
-      
+
       const response = await fetch("http://127.0.0.1:8000/api/login/", {
         method: "POST",
         headers: {
@@ -70,7 +70,7 @@ rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
 
           <input value={password} onChange={e => setpassword(e.target.value)} className="input_prm" type="password" placeholder="Enter password" />
           <h1 className="mr-4 cursor-pointer text-md text-end font-semibold">Forgot Password?</h1>
-          <CaptchaForm />
+          {/* <CaptchaForm /> */}
           <button onClick={onSubmit} className="btn-prm">Login</button>
           <Link href={`/auth/register`}>
             <button className="btn-sec">Sign Up</button>
