@@ -144,7 +144,8 @@ import Webcam from 'react-webcam';
 
 const PrivacyGuard = () => {
     const webcamRef = useRef(null);
-    //  const [user, setuser] = useState()
+
+    const [user, setuser] = useState(JSON.parse(localStorage.getItem("user")))
     //     // const router = useRouter()
 
     //     useEffect(() => {
@@ -163,7 +164,7 @@ const PrivacyGuard = () => {
                 const response = await fetch('http://localhost:8000/accounts/live/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ image: imageSrc }),
+                    body: JSON.stringify({ image: imageSrc, username: user.username }),
                 });
                 const data = await response.json();
 
@@ -185,6 +186,8 @@ const PrivacyGuard = () => {
     };
 
     useEffect(() => {
+        console.log(user);
+
         const interval = setInterval(captureAndCheck, 1000); // Check every 1 second
         return () => clearInterval(interval);
     }, []);
