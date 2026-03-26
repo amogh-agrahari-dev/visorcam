@@ -41,7 +41,7 @@ export default function Home() {
                 <img src="/savedimg.png" className="h-20 w-30 mr-3" alt="" />
               </div>
               <div className="border px-5 py-5 cursor-pointer bg-linear-to-tr from-blue-950 to-blue-600 rounded-xl flex flex-col w-full">
-                <span className="text-lg font-semibold rounded-2xl">Configure Settings</span>
+                <span className="text-lg font-semibold rounded-2xl">Configure </span>
                 {/* <span className="text-sm font-extralight">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero.</span> */}
               </div>
             </div>
