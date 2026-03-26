@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from "../../components/Navbar.jsx"
 import Card from '../../components/Card.jsx'
-import PrivacyGuard from '../../components/PrivacyGuard.tsx'
+import PrivacyGuard from '../../components/PrivacyGuard.jsx'
 const Page = () => {
   return (
     <div className="min-h-screen max-h-fit absolute inset-0 bg-blend-overlay bg-black/60 bg-[url('/wallpaper.png')] bg-cover bg-center">

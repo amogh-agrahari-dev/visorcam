@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Navbar from '../../../components/Navbar'
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
-import ImgUpload from '../../../components/ImgUpload';
+import ImgUpload from '../../../components/ImgUpload.js';
 
 const Page = () => {
     const [user, setuser] = useState()
