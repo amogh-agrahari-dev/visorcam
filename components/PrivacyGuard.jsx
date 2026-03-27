@@ -145,7 +145,7 @@ import Webcam from 'react-webcam';
 const PrivacyGuard = () => {
     const webcamRef = useRef(null);
 
-    const [user, setuser] = useState(JSON.parse(localStorage.getItem("user")))
+    // const [user, setuser] = useState(JSON.parse(localStorage.getItem("user")))
     //     // const router = useRouter()
 
     //     useEffect(() => {
@@ -153,6 +153,12 @@ const PrivacyGuard = () => {
 
     //     }, [])
     //     console.log(user);
+    const [user, setuser] = useState(() => {
+        if (typeof window !== "undefined") {
+            return JSON.parse(localStorage.getItem('user') || "default_value");
+        }
+        return "default_value"; // Fallback for Server-Side Rendering
+    });
     const [status, setStatus] = useState("Initializing...");
 
     const captureAndCheck = async () => {
