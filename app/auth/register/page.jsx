@@ -6,8 +6,10 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 
 const Page = () => {
   const [name, setname] = useState("");
+  const [username, setusername] = useState("");
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+
   const signup = async () => {
     if (!name || !email || !password) {
       toast('Enter All the Fields!', {
@@ -29,7 +31,8 @@ const Page = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: name,
+        first_name: name,
+        username: username,
         email: email,
         password: password,
       }),
@@ -75,6 +78,8 @@ rounded-xl shadow-lg p-8 text-white my-auto space-y-4">
           <h1 className="text-center text-4xl font-bold">SIGN UP</h1>
           <span>Enter Name</span>
           <input value={name} onChange={e => setname(e.target.value)} className="input_prm" type="text" placeholder="Enter Name" />
+          <span>Enter Username</span>
+          <input value={username} onChange={e => setusername(e.target.value)} className="input_prm" type="text" placeholder="Enter Username" />
           <span>Enter email</span>
           <input value={email} onChange={e => setemail(e.target.value)} className="input_prm" type="text" placeholder="Enter email" />
           <span>Enter password</span>
