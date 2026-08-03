@@ -1,41 +1,138 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #030712;
+  --foreground: #f9fafb;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
 }
 
-@layer components {
-  .input_prm{
-    @apply w-full px-4 py-2 border-solid border-1 border-blue-500;
+/* Custom Design System Components & Utilities */
+.panel-card {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-card:hover {
+  border-color: rgba(34, 211, 238, 0.35);
+  box-shadow: 0 25px 60px rgba(6, 182, 212, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-panel {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+}
+
+.input_prm {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input_prm::placeholder {
+  color: rgba(203, 213, 225, 0.8);
+}
+
+.input_prm:focus {
+  border-color: #67e8f9;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.4);
+}
+
+.btn-prm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.4);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-prm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 15px 30px -5px rgba(6, 182, 212, 0.6);
+  opacity: 0.95;
+}
+
+.btn-sec {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-sec:hover {
+  background: rgba(34, 211, 238, 0.12);
+  border-color: rgba(34, 211, 238, 0.7);
+}
+
+/* Animations */
+@keyframes radarSweep {
+  0% {
+    transform: rotate(0deg);
   }
-  .btn-prm{
-    @apply w-full px-5 py-3 cursor-pointer rounded-lg bg-blue-600;
+  100% {
+    transform: rotate(360deg);
   }
-  .btn-sec{
-    @apply w-full px-5 py-2 cursor-pointer rounded-lg border-2 border-blue-600
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-radar {
+  animation: radarSweep 4s linear infinite;
+}
+
+.animate-glow {
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* Gradient Text Helper */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
